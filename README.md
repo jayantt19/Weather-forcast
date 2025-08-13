@@ -1,0 +1,1 @@
+<h1>A weather forecast app allows users to check current weather conditions and future forecasts for a given location. It usually pulls data from a public API (like OpenWeatherMap) and presents it with a user-friendly interface.</h1>
