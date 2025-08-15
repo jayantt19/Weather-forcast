@@ -5,6 +5,7 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     color: white;
+    font-weight: 400;
 }
 body{
     background: url('assets/bg.jpg');
@@ -24,6 +25,11 @@ height: 100dvh;
 background: rgb(0, 0, 0,0.15);
 backdrop-filter: blur(15px);
 }
+/*UTILITIES */
+.regular-txt{
+    font-weight: 400;
+}
+/* END  UTILITIES */
 .main-container{
     width: 300px;
     height:496px;
@@ -36,6 +42,14 @@ backdrop-filter: blur(15px);
 }
 .input-container{
  position: relative;
+ margin-bottom:25px;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
 }
 .city-input{
     width: 100%;
@@ -64,3 +78,38 @@ backdrop-filter: blur(15px);
   border: none;
   cursor: pointer;
 }
+/* END INPURT CONTAINER */
+/*Section- Weather info */
+.weather-info{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+.location-date-container{
+    border:none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 70px;
+}
+.location{
+    border: none;
+    display:flex;
+    background:none;
+    gap: 5px;
+}
+.weather-summary-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+.weather-summary-img{
+    width: 120px;
+    height: 120px;
+}
+.weather-summary-info{
+    text-align: end;
+}
+/*END SECTION WEATHER INFO */
