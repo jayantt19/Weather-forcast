@@ -12,6 +12,8 @@ const tempTxt=document.querySelector('.temp-txt')
 const conditionTxt=document.querySelector('.condition-txt')
 const humidityValueTxt=document.querySelector('.humidity-value-txt')
 const windValueTxt=document.querySelector('.wind-value-txt')
+const weatherSummarImg=document.querySelector('.weather-summary-img')
+const currentDatetext=document.querySelector('.current-date-txt')
 
 searchBtn.addEventListener('click',()=>{
     if(cityInput.value.trim()!=''){
@@ -48,6 +50,15 @@ async function updateWeatherInfo(city){
         weather:[{ id ,main }],
         wind:{speed}
     }= WeatherData
+
+  countryTxt.textContent = country
+  tempTxt.textContent = Math.round(temp) + ' °C'
+  conditionTxt.textContent=main
+  humidityValueTxt.textContent=humidity + ' %'
+  windValueTxt.textContent=speed + ' M/s'
+
+  weatherSummarImg.src=`assets/weather/`${getWeatherIcon(id)}
+
     showDisplaySection(weatherInfoSection)
 }
 function showDisplaySection(section){
