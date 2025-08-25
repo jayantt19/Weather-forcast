@@ -13,7 +13,7 @@ const conditionTxt=document.querySelector('.condition-txt')
 const humidityValueTxt=document.querySelector('.humidity-value-txt')
 const windValueTxt=document.querySelector('.wind-value-txt')
 const weatherSummarImg=document.querySelector('.weather-summary-img')
-const currentDatetext=document.querySelector('.current-date-txt')
+const currentDateTxt=document.querySelector('.current-date-txt')
 
 searchBtn.addEventListener('click',()=>{
     if(cityInput.value.trim()!=''){
@@ -36,6 +36,27 @@ async function getFetchData(endPoint, city){
  const response = await fetch(apiUrl)
  return response.json()
 }
+function getWeatherIcon(id){
+ if(id<=232) return 'thunderstorm.svg'
+  if(id<=321) return 'drizzle.svg'
+  if(id<=531) return 'rain.svg'
+  if(id<=622) return 'snow.svg'
+  if(id<=781) return 'atmosphere.svg'
+  if(id<=800) return 'clear.svg'
+  else  return 'clouds.svg'
+}
+
+function getCurrentDate(){
+    const currentDate= new Date()
+    const option = {
+     weekday: 'short',
+     day:'2-digit',
+     month:'short'
+    }
+    return currentDate.toLocaleDateString('en-GB', option)
+}
+
+
 async function updateWeatherInfo(city){
     const WeatherData=await getFetchData('weather',city)
     if(WeatherData.cod!=200){
@@ -56,14 +77,23 @@ async function updateWeatherInfo(city){
   conditionTxt.textContent=main
   humidityValueTxt.textContent=humidity + ' %'
   windValueTxt.textContent=speed + ' M/s'
+   currentDateTxt.textContent=getCurrentDate()
+  weatherSummarImg.src=`assets/weather/${getWeatherIcon(id)}`
 
-  weatherSummarImg.src=`assets/weather/`${getWeatherIcon(id)}
-
+  await updateForecastInfo()
     showDisplaySection(weatherInfoSection)
 }
+  async function updateForecastInfo(city){
+    const forecastsData= await getFetchData('forecast',city)
+    const timeTaken='12:00:00'
+    const todayDate=new Date().toISOString().split('T')[0]
+    forecastsData.list.forEach(forecastWeather => {
+        console.log(forecastWeather)
+    })
+  }
+
 function showDisplaySection(section){
    [weatherInfoSection,searchCitySection,notFoundSection]
        .forEach(section => section.style.display='none')
-   
        section.style.display='flex'
 }
